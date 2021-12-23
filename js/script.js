@@ -1,9 +1,13 @@
+// Importing funtions from other js file
+import { setupGround, updateGround } from "./ground.js";
+
+
 // Code to fix scaling Issues to make the game fully responsive 
 const WORLD_WIDTH = 100;
 const WORLD_HEIGHT = 30;
 const worldElem = document.querySelector("[data-world]");
 
-setPixelToWorldScale()
+setPixelToWorldScale();
 window.addEventListener("resize", setPixelToWorldScale);
 
 
@@ -23,3 +27,20 @@ function setPixelToWorldScale() {
 }
 
 // Creating an update Loop that runs every frame and updates the position of the element on the screen
+    setupGround();
+    let lastTime;
+    // let speedScale;
+    // let score;
+    function update(time) {
+    if (lastTime == null) {
+        lastTime = time;
+        window.requestAnimationFrame(update);
+        return;
+    }
+    const delta = time - lastTime;
+    updateGround(delta, 1);
+
+    lastTime = time;
+    window.requestAnimationFrame(update);
+}
+window.requestAnimationFrame(update);
