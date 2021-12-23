@@ -22,3 +22,4 @@ function setPixelToWorldScale() {
     worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`;
 }
 
+// Creating an update Loop that runs every frame and updates the position of the element on the screen
