@@ -27,7 +27,6 @@ function setPixelToWorldScale() {
 }
 
 // Creating an update Loop that runs every frame and updates the position of the element on the screen
-    let score;
     let lastTime;
     function update(time) {
     if (lastTime == null) {
@@ -38,6 +37,7 @@ function setPixelToWorldScale() {
     const delta = time - lastTime;
     updateGround(delta, speedScale);
     updateSpeedScale(delta);
+    updateScore(delta);
 
     lastTime = time;
     window.requestAnimationFrame(update);
@@ -50,13 +50,26 @@ const SPEED_SCALE_INCREASE = 0.00001;
 //Invoking handleStart funtion when any key is pressed
 document.addEventListener("keydown", handleStart, { once: true });
 
+// Geting the start instruction text 
+const startScreenElem = document.querySelector("[data-start-screen]");
+
 function handleStart() {
     lastTime = null;
     speedScale = 1;
+    score = 0;
     setupGround();
+    startScreenElem.classList.add('hide');
     window.requestAnimationFrame(update);
 }
 
 function updateSpeedScale(delta) {
     speedScale += delta * SPEED_SCALE_INCREASE;
+}
+
+// Creating the score function to update the game score
+const scoreElem = document.querySelector("[data-score]");
+let score;
+function updateScore(delta) {
+    score += delta * 0.01;
+    scoreElem.textContent = Math.floor(score);
 }
