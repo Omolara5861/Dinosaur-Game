@@ -13,7 +13,8 @@ import {
     setCustomProperty(groundElems[1], "--left", 300);
   }
   
-  export function updateGround(delta) {
+  export function updateGround(delta, speedScale) {
+    // Increasing the speed scale 
     groundElems.forEach(ground => {
         incrementCustomProperty(ground, "--left", delta * SPEED * -1);
     // looping through the ground element so It always reconnect at the end of each line / ground image

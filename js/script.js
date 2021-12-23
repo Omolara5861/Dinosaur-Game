@@ -27,10 +27,8 @@ function setPixelToWorldScale() {
 }
 
 // Creating an update Loop that runs every frame and updates the position of the element on the screen
-    setupGround();
+    let score;
     let lastTime;
-    // let speedScale;
-    // let score;
     function update(time) {
     if (lastTime == null) {
         lastTime = time;
@@ -38,9 +36,27 @@ function setPixelToWorldScale() {
         return;
     }
     const delta = time - lastTime;
-    updateGround(delta, 1);
+    updateGround(delta, speedScale);
+    updateSpeedScale(delta);
 
     lastTime = time;
     window.requestAnimationFrame(update);
 }
-window.requestAnimationFrame(update);
+
+// Handling Start Function and Increasing the Speed scale
+let speedScale;
+const SPEED_SCALE_INCREASE = 0.00001;
+
+//Invoking handleStart funtion when any key is pressed
+document.addEventListener("keydown", handleStart, { once: true });
+
+function handleStart() {
+    lastTime = null;
+    speedScale = 1;
+    setupGround();
+    window.requestAnimationFrame(update);
+}
+
+function updateSpeedScale(delta) {
+    speedScale += delta * SPEED_SCALE_INCREASE;
+}
