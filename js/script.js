@@ -1,6 +1,6 @@
 // Importing funtions from other js file
 import { setupGround, updateGround } from "./ground.js";
-
+import { setupDino, updateDino } from "./dino.js";
 
 // Code to fix scaling Issues to make the game fully responsive 
 const WORLD_WIDTH = 100;
@@ -38,6 +38,8 @@ function setPixelToWorldScale() {
     updateGround(delta, speedScale);
     updateSpeedScale(delta);
     updateScore(delta);
+    updateDino(delta, speedScale);
+
 
     lastTime = time;
     window.requestAnimationFrame(update);
@@ -58,6 +60,7 @@ function handleStart() {
     speedScale = 1;
     score = 0;
     setupGround();
+    setupDino();
     startScreenElem.classList.add('hide');
     window.requestAnimationFrame(update);
 }
