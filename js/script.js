@@ -1,6 +1,8 @@
 // Importing funtions from other js file
 import { setupGround, updateGround } from "./ground.js";
 import { setupDino, updateDino } from "./dino.js";
+import { setupCactus, updateCactus } from "./cactus.js";
+
 
 // Code to fix scaling Issues to make the game fully responsive 
 const WORLD_WIDTH = 100;
@@ -39,6 +41,8 @@ function setPixelToWorldScale() {
     updateSpeedScale(delta);
     updateScore(delta);
     updateDino(delta, speedScale);
+    updateCactus(delta, speedScale);
+
 
 
     lastTime = time;
@@ -61,6 +65,7 @@ function handleStart() {
     score = 0;
     setupGround();
     setupDino();
+    setupCactus();
     startScreenElem.classList.add('hide');
     window.requestAnimationFrame(update);
 }
