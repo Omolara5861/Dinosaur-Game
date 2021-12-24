@@ -1,7 +1,7 @@
 // Importing funtions from other js file
 import { setupGround, updateGround } from "./ground.js";
-import { setupDino, updateDino } from "./dino.js";
-import { setupCactus, updateCactus } from "./cactus.js";
+import { setupDino, updateDino, getDinoRect, setDinoLose } from "./dino.js";
+import { setupCactus, updateCactus, getCactusRects} from "./cactus.js";
 
 
 // Code to fix scaling Issues to make the game fully responsive 
@@ -42,6 +42,7 @@ function setPixelToWorldScale() {
     updateScore(delta);
     updateDino(delta, speedScale);
     updateCactus(delta, speedScale);
+    if (checkLose()) return handleLose();
 
 
 
@@ -81,3 +82,27 @@ function updateScore(delta) {
     score += delta * 0.01;
     scoreElem.textContent = Math.floor(score);
 }
+
+// Creating the function for when a player loses 
+function checkLose() {
+    const dinoRect = getDinoRect();
+    return getCactusRects().some(rect => isCollision(rect, dinoRect));
+}
+
+function isCollision(rect1, rect2) {
+    return (
+    rect1.left < rect2.right &&
+    rect1.top < rect2.bottom &&
+    rect1.right > rect2.left &&
+    rect1.bottom > rect2.top
+    );
+}
+
+function handleLose() {
+    setDinoLose();
+    setTimeout(() => {
+      document.addEventListener("keydown", handleStart, { once: true });
+      startScreenElem.classList.remove("hide");
+    }, 100);
+  }
+  

@@ -31,6 +31,14 @@ export function updateDino(delta, speedScale) {
     handleJump(delta);
 }
 
+export function getDinoRect() {
+    return dinoElem.getBoundingClientRect();
+}
+
+export function setDinoLose() {
+    dinoElem.src = "imgs/dino-lose.png";
+}
+
 // Moving through the 2 Dino moving
 function handleRun(delta, speedScale) {
     // Setting the dino to the sttionry animtion if it's jumping
@@ -50,7 +58,7 @@ function handleRun(delta, speedScale) {
     currentFrameTime += delta * speedScale;
 }
 
-    function handleJump(delta) {
+function handleJump(delta) {
     if (!isJumping) return;
 
     incrementCustomProperty(dinoElem, "--bottom", yVelocity * delta);
@@ -63,9 +71,9 @@ function handleRun(delta, speedScale) {
     yVelocity -= GRAVITY * delta;
 }
 
-// setting event to listen to on jump
+// 
 function onJump(e) {
-    if (e.keyCode !== 38 && e.keyCode !== 32 || isJumping) return;
+    if (e.keyCode !== 32 && e.keyCode !== 38 || isJumping) return;
 
     yVelocity = JUMP_SPEED;
     isJumping = true;
