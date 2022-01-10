@@ -8,6 +8,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body title="jump!">
+    <!-- Instruction pop up -->
+    <div class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h3>Dinosaur Game Clone (Guide)</h3>
+            </div>
+            <div class="modal-body">
+            <ul>
+                <li>Press any key to start the game.</li>
+                <li>Press the up arrow or space bar to jump over the obstacles (cactus) in your path.</li>
+                <li>The longer you play, the faster dino runs/the ground moves.</li>
+                <li>Once you crashes into the cactus, the game is over and you have to restart (your score resets, too). You can restart the game by pressing any key.</li>
+            </ul>
+            </div>
+        </div>
+    </div>
+    
     <div class="world" data-world>
     <div class="score" data-score>0</div>
     <div class="start-screen" data-start-screen>Press Any Key To Start</div>
@@ -16,5 +35,14 @@
     <img src="imgs/dino-stationary.png" title="jump!" class="dino" data-dino />
     </div>
     <script src="js/script.js" type="module"></script>
+
+    <script>
+        // For the pop up (modal)
+        const modal = document.querySelector('.modal');
+        const closePopUp = document.querySelector('.close');
+        closePopUp.addEventListener('click', () => {
+            modal.classList.add('hide');
+        })
+    </script>
 </body>
 </html>
