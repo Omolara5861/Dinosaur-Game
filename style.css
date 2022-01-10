@@ -23,10 +23,12 @@ body {
   margin: 30px auto;
   position: fixed;
   z-index: 40001;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px #000;
+  background: radial-gradient(rgba(0,0,0,0), rgba(255,255,255,0.9));
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+  box-shadow: 5px 10px 20px rgba(0,0,0,0.6);
   color: #4c5461;
+
   /* box-shadow: 0 .5em 1em rgba(0,0,0,.3); */
 
 }
